@@ -10,6 +10,9 @@ public class Bouncer : MonoBehaviour
     // saved for efficiency
     HUD hud;
 
+    // audio source for the game object
+    AudioSource audioSource;
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -22,6 +25,8 @@ public class Bouncer : MonoBehaviour
 		// get the bouncer moving
         GetComponent<Rigidbody2D>().AddForce(
             new Vector2(3, 2), ForceMode2D.Impulse);
+
+        audioSource = GetComponent<AudioSource>();
 	}
 
     /// <summary>
@@ -31,5 +36,6 @@ public class Bouncer : MonoBehaviour
     void OnCollisionEnter2D(Collision2D coll)
     {
         hud.AddBounce();
+        audioSource.Play();
     }
 }
